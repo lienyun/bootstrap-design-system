@@ -1,0 +1,132 @@
+// Custom.scss
+// Option B: Include parts of Bootstrap
+
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "../node_modules/bootstrap/scss/functions";
+
+// 2. Include any default variable overrides here
+// 設定主色輔色
+$blue: #347ab6;
+$orange: #eb823d;
+$neutral: #ADB5BD;
+$secondary: $orange;
+
+$info: $neutral;
+$neutral-100: tint-color($neutral, 80%);
+$neutral-200: tint-color($neutral, 60%);
+$neutral-300: tint-color($neutral, 40%);
+$neutral-400: tint-color($neutral, 20%);
+$neutral-500: $neutral;
+$neutral-600: shade-color($neutral, 20%);
+$neutral-700: shade-color($neutral, 40%);
+$neutral-800: shade-color($neutral, 60%);
+$neutral-900: shade-color($neutral, 80%);
+
+$neutrals: (
+  "neutral-100": $neutral-100,
+  "neutral-200": $neutral-200,
+  "neutral-300": $neutral-300,
+  "neutral-400": $neutral-400,
+  "neutral-500": $neutral-500,
+  "neutral-600": $neutral-600,
+  "neutral-700": $neutral-700,
+  "neutral-800": $neutral-800,
+  "neutral-900": $neutral-900
+);
+
+$font-family-sans-serif: Microsoft JhengHei;
+
+// 3. Include remainder of required Bootstrap stylesheets (including any separate color mode stylesheets)
+@import "../node_modules/bootstrap/scss/variables";
+// @import "../node_modules/bootstrap/scss/variables-dark";
+
+// 4. Include any default map overrides here
+
+// 5. Include remainder of required parts
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/root";
+
+// 6. Optionally include any other parts as needed
+@import "../node_modules/bootstrap/scss/utilities";
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/images";
+@import "../node_modules/bootstrap/scss/containers";
+@import "../node_modules/bootstrap/scss/grid";
+@import "../node_modules/bootstrap/scss/helpers";
+
+// 產生bg-blue-100, text-blue-100 class name
+$all-colors: map-merge-multiple(
+  $blues,
+  $indigos,
+  $purples,
+  $pinks,
+  $reds,
+  $oranges,
+  $yellows,
+  $greens,
+  $teals,
+  $cyans,
+  $neutrals
+);
+
+$utilities: map-merge(
+  $utilities,
+  (
+    "color":
+      map-merge(
+        map-get($utilities, "color"),
+        (
+          values:
+            map-merge(
+              map-get(map-get($utilities, "color"), "values"),
+              ($all-colors)
+            ),
+        )
+      ),
+    "background-color":
+      map-merge(
+        map-get($utilities, "background-color"),
+        (
+          values:
+            map-merge(
+              map-get(map-get($utilities, "background-color"), "values"),
+              ($all-colors)
+            ),
+        )
+      ),
+  )
+);
+
+// 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
+@import "../node_modules/bootstrap/scss/utilities/api";
+
+// 8. Add additional custom code here
+// button
+.btn-primary {
+  @include button-variant($blue, $blue);
+}
+.btn-secondary {
+  @include button-variant(#6c757d, #6c757d);
+}
+.btn-warning {
+  @include button-variant($orange-500, $orange-700,white, $hover-color: white,$disabled-color: white,$active-color: white);
+}
+
+.btn-outline-primary {
+  @include button-outline-variant($blue, white, $blue);
+}
+.btn-outline-secondary {
+  @include button-outline-variant(#6c757d, white);
+}
+.btn-outline-warning {
+  @include button-outline-variant($orange-500, white);
+}
+
+.btn-link {
+  text-decoration: none;
+}
+h1,h2,h3,h4,h5,h6 {
+  font-weight: 700;
+}

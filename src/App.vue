@@ -1,30 +1,24 @@
-<template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+<template lang="">
+  <div class="container">
+    <h1 class="text-center mt-5">Infactory Design System</h1>
+    <ul>
+      <li><router-link to="/">Home</router-link></li>
+      <li><router-link to="/colors">Colors</router-link></li>
+      <li><router-link to="/shadow">Shadow</router-link></li>
+      <li><router-link to="/font">Font</router-link></li>
+      <li><router-link to="/buttons">Buttons</router-link></li>
+      <li><router-link to="/login">Login</router-link></li>
+      <li><router-link to="/table">Table</router-link></li>
+
+    </ul>
+    <router-view></router-view>
+  </div>
 </template>
-
+<script>
+export default {
+  name: "App",
+};
+</script>
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
 
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
 </style>
